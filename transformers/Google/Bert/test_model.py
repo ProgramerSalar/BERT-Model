@@ -126,8 +126,6 @@ class BertModelTest(tf.test.TestCase):
       self.parent.assertAllEqual(result["pooled_output"].shape,
                                  [self.batch_size, self.hidden_size])
 
-  def test_default(self):
-    self.run_tester(BertModelTest.BertModelTester(self))
 
   def test_config_to_json_string(self):
     config = modeling.BertConfig(vocab_size=99, hidden_size=37)
@@ -147,7 +145,9 @@ class BertModelTest(tf.test.TestCase):
       self.assert_all_tensors_reachable(sess, [init_op, ops])
 
   
-  
+  def test_default(self):
+    self.run_tester(tester=BertModelTest.BertModelTester(self))
+
 
 
 
